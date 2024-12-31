@@ -8,7 +8,7 @@ import os  # Import os module
 app = Flask(__name__)
 
 # Configure Google Gemini API
-genai.configure(api_key="AIzaSyDBl-uMwftCEkf5h9S3XqfyZlKh2IvHXK8") 
+genai.configure(api_key="AIzaSyAWikfC6iVfLj49nPho8PbGuOl0EvMbAF4") 
 today = str(date.today())
 model = genai.GenerativeModel('gemini-pro')
 chat = model.start_chat()
