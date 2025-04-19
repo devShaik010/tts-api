@@ -3,14 +3,18 @@ import requests
 import json
 import google.generativeai as genai
 from datetime import date
-import os  # Import os module
+import os
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 
 app = Flask(__name__)
 
 # Configure Google Gemini API
-genai.configure(api_key="AIzaSyAWikfC6iVfLj49nPho8PbGuOl0EvMbAF4") 
+genai.configure(api_key=os.getenv('GOOGLE_API_KEY'))
 today = str(date.today())
-model = genai.GenerativeModel('gemini-pro')
+model = genai.GenerativeModel('gemini-1.5-flash-8B')
 chat = model.start_chat()
 
 # Gemini Pro model parameters
@@ -33,7 +37,7 @@ def text_to_speech(text, language_code="hi-IN", speaker="meera"):
     }
 
     headers = {
-        "api-subscription-key": "4cf5e4fb-fe1d-4c5c-9c58-8a4c3da4ec91",  # Replace with your actual API key
+        "api-subscription-key": os.getenv('SARVAM_API_KEY'),
         "Content-Type": "application/json"
     }
 
