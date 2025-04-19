@@ -13,17 +13,24 @@ app = Flask(__name__)
 
 # Configure Google Gemini API
 genai.configure(api_key=os.getenv('GOOGLE_API_KEY'))
-today = str(date.today())
-model = genai.GenerativeModel('gemini-1.5-flash-8B')
-chat = model.start_chat()
 
-# Gemini Pro model parameters
-gf = {
-    "temperature": 0.9,
-    "top_p": 1,
-    "top_k": 1,
-    "max_output_tokens": 528,
+# Updated Gemini configuration
+generation_config = {
+    "temperature": 1,
+    "top_p": 0.95,
+    "top_k": 40,
+    "max_output_tokens": 8192,
+    "response_mime_type": "text/plain",
 }
+
+# Create the model with new configuration
+model = genai.GenerativeModel(
+    model_name="gemini-1.5-flash-8b",
+    generation_config=generation_config,
+)
+
+# Initialize chat session
+chat = model.start_chat(history=[])
 
 def text_to_speech(text, language_code="hi-IN", speaker="meera"):
     """Convert text to speech using Sarvam AI's TTS API."""
@@ -70,7 +77,7 @@ def translate_and_speak():
     try:
         # Generate translation using the target language for Gemini
         language_request = f"Translate this from {input_language} to {target_language}: {input_text}!"
-        response = chat.send_message(language_request, generation_config=gf)
+        response = chat.send_message(language_request)
         translated_text = response.text
 
         # Generate speech using the input language for Sarvam AI
