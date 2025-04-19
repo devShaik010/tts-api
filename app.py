@@ -1,8 +1,6 @@
 from flask import Flask, request, jsonify
 import requests
-import json
 import google.generativeai as genai
-from datetime import date
 import os
 from dotenv import load_dotenv
 
