@@ -74,7 +74,8 @@ def translate_and_speak():
 
     try:
         # Generate translation using the target language for Gemini
-        language_request = f"Translate this from {input_language} to {target_language}: {input_text}!"
+        language_request = f"Only translate and give translated text from this {input_language} to {target_language}:{input_text}
+        Restriction: Output must contain only the translated Telugu text. Do not include English transliteration or any explanation."
         response = chat.send_message(language_request)
         translated_text = response.text
 
