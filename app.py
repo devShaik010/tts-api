@@ -23,7 +23,7 @@ generation_config = {
 
 # Create the model with new configuration
 model = genai.GenerativeModel(
-    model_name="gemini-pro",
+    model_name="gemma-3-1b-it",
     generation_config=generation_config,
 )
 
