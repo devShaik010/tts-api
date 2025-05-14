@@ -38,7 +38,7 @@ def text_to_speech(text, language_code="hi-IN", speaker="meera"):
         "inputs": [text],
         "target_language_code": language_code,
         "speaker": speaker,
-        "model": "bulbul:v1"
+        "model": "bulbul:v2"
     }
 
     headers = {
