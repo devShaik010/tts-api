@@ -30,12 +30,12 @@ model = genai.GenerativeModel(
 # Initialize chat session
 chat = model.start_chat(history=[])
 
-def text_to_speech(text, language_code="hi-IN", speaker="meera"):
+def text_to_speech(text, language_code="hi-IN", speaker="anushka"):
     """Convert text to speech using Sarvam AI's TTS API."""
     url = "https://api.sarvam.ai/text-to-speech"
 
     payload = {
-        "inputs": [text],
+        "text": text,  # Changed from "inputs": [text] to "text": text
         "target_language_code": language_code,
         "speaker": speaker,
         "model": "bulbul:v1"
@@ -70,7 +70,7 @@ def translate_and_speak():
     input_text = data["text"]
     input_language = data["language"]  # This should be in the format 'hi-IN', 'te-IN', etc.
     target_language = data["target_language"]  # This can be like 'telugu', 'hindi', etc.
-    voice_model = data.get("voice_model", "meera")  # Default voice model if not provided
+    voice_model = data.get("voice_model", "anushka")  # Default voice model if not provided
 
     try:
         # Generate translation using the target language for Gemini
